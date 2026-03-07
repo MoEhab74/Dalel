@@ -14,7 +14,16 @@ class PageViewBody extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 32),
-        Image.asset(Assets.imagesOnBoarding1),
+        Container(
+          height: 290,
+          width: 345,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Assets.imagesOnBoarding1),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
         const SizedBox(height: 24),
         SmoothPageIndicator(
           controller: controller, // PageController
@@ -34,6 +43,8 @@ class PageViewBody extends StatelessWidget {
           style: AppTextStyles.poppins500Style24.copyWith(
             fontWeight: FontWeight.w700,
           ),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
         ),
         const SizedBox(height: 16),
         Text(
@@ -43,6 +54,8 @@ class PageViewBody extends StatelessWidget {
             fontSize: 18,
             fontWeight: FontWeight.w300,
           ),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
         ),
         
       ],

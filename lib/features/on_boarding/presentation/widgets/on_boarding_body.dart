@@ -18,8 +18,10 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: 550,
       child: PageView.builder(
+        physics: BouncingScrollPhysics(),
         controller: controller,
         itemCount: 3,
         itemBuilder: (context, index) {
