@@ -3,9 +3,15 @@ import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton({super.key, required this.text, this.textColor});
+  const AppButton({
+    super.key,
+    required this.text,
+    this.textColor,
+    this.onPressed,
+  });
   final String text;
   final Color? textColor;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +19,7 @@ class AppButton extends StatelessWidget {
       width: double.infinity,
       height: 56,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primaryColor,
           shape: RoundedRectangleBorder(
