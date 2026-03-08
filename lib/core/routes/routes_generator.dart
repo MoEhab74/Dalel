@@ -15,7 +15,7 @@ class RoutesGenerator {
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
-        path: AppRoutes.onBoarding1Route,
+        path: AppRoutes.onBoardingRoute,
         builder: (context, state) => const OnBoardingView(),
       ),
       GoRoute(
