@@ -36,7 +36,7 @@ void navigationDelaye(BuildContext context) {
         getIt<CacheHelper>().getDate(key: 'isOnBoardingVisited') ?? false;
     if (isOnBoardingVisited) {
       // If the user has already completed the onboarding process, navigate to the sign-in screen
-      GoRouter.of(context).pushReplacement(AppRoutes.signInRoute);
+      GoRouter.of(context).pushReplacement(AppRoutes.signUpRoute);
     } else {
       // If the user has not completed the onboarding process, navigate to the onboarding screen
       GoRouter.of(context).pushReplacement(AppRoutes.onBoardingRoute);
