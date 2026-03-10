@@ -1,9 +1,8 @@
-import 'package:dalel/core/database/cache/cache_helper.dart';
 import 'package:dalel/core/routes/app_routes.dart';
-import 'package:dalel/core/services/service_locator.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/widgets/app_buttom.dart';
 import 'package:dalel/features/on_boarding/data/models/on_boarding_model.dart';
+import 'package:dalel/features/on_boarding/presentation/views/functions/on_boarding.dart';
 import 'package:dalel/features/on_boarding/presentation/widgets/custom_auth_action.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -26,6 +25,8 @@ class GetButtoms extends StatelessWidget {
               AppButton(
                 text: AppStrings.createAccount,
                 onPressed: () {
+                  // Save in cache that the user has completed the onboarding process
+                  onBoardingVisited();
                   GoRouter.of(context).pushReplacement(AppRoutes.signUpRoute);
                 },
               ),
@@ -34,10 +35,7 @@ class GetButtoms extends StatelessWidget {
                 actionText: AppStrings.loginNow,
                 onPressed: () {
                   // Save in cache that the user has completed the onboarding process
-                  getIt<CacheHelper>().saveDate(
-                    key: 'isOnBoardingVisited',
-                    value: true,
-                  );
+                  onBoardingVisited();
                   GoRouter.of(context).pushReplacement(AppRoutes.signInRoute);
                 },
               ),
