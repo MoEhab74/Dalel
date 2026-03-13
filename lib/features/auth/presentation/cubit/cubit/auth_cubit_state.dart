@@ -1,4 +1,12 @@
+class AuthState {}
 
-class AuthCubitState {}
+final class AuthInitial extends AuthState {}
 
-final class AuthCubitInitial extends AuthCubitState {}
+final class SignUpLoadingState extends AuthState {}
+
+final class SignUpSuccessState extends AuthState {}
+
+final class SignUpFailureState extends AuthState {
+  final String errorMessage;
+  SignUpFailureState(this.errorMessage);
+}
