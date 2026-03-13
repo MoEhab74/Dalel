@@ -1,8 +1,9 @@
+import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/widgets/app_buttom.dart';
 import 'package:dalel/features/auth/presentation/cubit/cubit/auth_cubit.dart';
 import 'package:dalel/features/auth/presentation/cubit/cubit/auth_cubit_state.dart';
-import 'package:dalel/features/auth/presentation/widgets/custom_text_field.dart';
+import 'package:dalel/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:dalel/features/auth/presentation/widgets/terms_and_conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,44 +18,54 @@ class CustomSignUpForm extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
+        AuthCubit authCubit = BlocProvider.of<AuthCubit>(context);
         return Form(
+          key: authCubit.formKey,
           child: Column(
             children: [
               CustomTextFormField(
-                hintText: AppStrings.fristName,
+                lableText: AppStrings.fristName,
                 bottomPadding: 24,
                 onChanged: (firstName) {
-                  BlocProvider.of<AuthCubit>(context).firstName = firstName;
+                  authCubit.firstName = firstName;
                 },
               ),
               CustomTextFormField(
-                hintText: AppStrings.lastName,
+                lableText: AppStrings.lastName,
                 bottomPadding: 24,
                 onChanged: (lastName) {
-                  BlocProvider.of<AuthCubit>(context).lastName = lastName;
+                  authCubit.lastName = lastName;
                 },
               ),
               CustomTextFormField(
-                hintText: AppStrings.emailAddress,
+                lableText: AppStrings.emailAddress,
                 bottomPadding: 24,
                 onChanged: (emailAddress) {
-                  BlocProvider.of<AuthCubit>(context).emailAddress = emailAddress;
+                  authCubit.emailAddress = emailAddress;
                 },
               ),
               CustomTextFormField(
-                hintText: AppStrings.password,
+                lableText: AppStrings.password,
+                isPasswordField: true,
                 bottomPadding: 16,
                 onChanged: (password) {
-                  BlocProvider.of<AuthCubit>(context).password = password;
+                  authCubit.password = password;
                 },
               ),
               TermsAndConditions(),
               SizedBox(height: 170),
               AppButton(
+                backgroundColor:
+                    authCubit.termsAndConditionsCheckBoxValue == false
+                    ? AppColors.gray
+                    : null,
                 text: AppStrings.signUp,
                 onPressed: () {
-                  // context.read will call the function in the cubit and the function will emit the states and the BlocConsumer will listen to those states and rebuild the UI accordingly
-                  BlocProvider.of<AuthCubit>(context).signUpWithEmailAndPassword();
+                  if (authCubit.termsAndConditionsCheckBoxValue == true) {
+                    if (authCubit.formKey.currentState!.validate()) {
+                      authCubit.signUpWithEmailAndPassword();
+                    }
+                  }
                 },
               ),
             ],
