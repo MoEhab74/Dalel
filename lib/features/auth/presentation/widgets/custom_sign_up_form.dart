@@ -20,8 +20,8 @@ class CustomSignUpForm extends StatelessWidget {
       listener: (context, state) {
         if (state is SignUpSuccessState) {
           showFlutterToast('User signed up successfully', Colors.green);
-          // Pushreplacement to login view
-          // GoRouter.of(context).pushReplacement(AppRoutes.signInRoute);
+          // Pushreplacement to home view
+          GoRouter.of(context).pushReplacement(AppRoutes.homeRoute);
         } else if (state is SignUpFailureState) {
           showFlutterToast(state.errorMessage, Colors.red);
         }
@@ -86,3 +86,9 @@ class CustomSignUpForm extends StatelessWidget {
     );
   }
 }
+
+// Current video
+
+/*
+1- Navigate to signIn after signUp successfullly
+*/
