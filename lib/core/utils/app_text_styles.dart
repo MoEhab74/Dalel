@@ -32,4 +32,10 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w400,
     color: Color(0xFF07122E),
   );
+  static TextStyle saira700Style32 = TextStyle(
+    fontFamily: 'Saira',
+    fontSize: 32,
+    fontWeight: FontWeight.w700,
+    color: Color(0xFFFFFFFF),
+  );
 }

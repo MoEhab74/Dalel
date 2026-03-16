@@ -41,7 +41,7 @@ void navigationDelaye(BuildContext context) {
       if (getIt<FirebaseAuth>().currentUser != null) {
         GoRouter.of(context).pushReplacement(AppRoutes.homeRoute);
       } else {
-        GoRouter.of(context).pushReplacement(AppRoutes.signUpRoute);
+        GoRouter.of(context).pushReplacement(AppRoutes.signInRoute);
       }
     } else {
       // If the user has not completed the onboarding process, navigate to the onboarding screen

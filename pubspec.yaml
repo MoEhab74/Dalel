@@ -34,6 +34,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_svg: ^2.2.4
   fluttertoast: ^9.0.0
   get_it: ^9.2.1
   go_router: ^17.1.0
@@ -82,6 +83,10 @@ flutter:
     - family: Poppins
       fonts:
         - asset: assets\fonts\Poppins-Medium.ttf
+          style: normal
+    - family: Saira
+      fonts:
+        - asset: assets/fonts/Saira-VariableFont_wdth,wght.ttf
           style: normal
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-packageflutter_assets:
