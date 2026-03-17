@@ -21,6 +21,7 @@ class CustomTextFormField extends StatelessWidget {
   final double? bottomPadding;
   final void Function(String)? onChanged;
   final void Function(String)? onFieldSubmitted;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(

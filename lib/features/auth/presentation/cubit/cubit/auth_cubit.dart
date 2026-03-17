@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dalel/features/auth/presentation/cubit/cubit/auth_cubit_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,7 @@ class AuthCubit extends Cubit<AuthState> {
         email: emailAddress!,
         password: password!,
       );
+      verifyEmail();
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
       _handleFirebaseSignUpException(e);
@@ -43,12 +46,9 @@ class AuthCubit extends Cubit<AuthState> {
       emit(SignInSuccessState());
     } on FirebaseAuthException catch (e) {
       _handleFirebaseSignInException(e);
+      log(e.toString());
     } catch (e) {
-      emit(
-        SignInFailureState(
-          e.toString(),
-        ),
-      );
+      emit(SignInFailureState(e.toString()));
     }
   }
 
@@ -60,6 +60,10 @@ class AuthCubit extends Cubit<AuthState> {
   void togglePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
     emit(PasswordVisibilityState(isPasswordVisible));
+  }
+
+  void verifyEmail() async {
+    await FirebaseAuth.instance.currentUser!.sendEmailVerification();
   }
 
   void _handleFirebaseSignUpException(FirebaseAuthException e) {
@@ -88,7 +92,7 @@ class AuthCubit extends Cubit<AuthState> {
         );
     }
   }
-  
+
   void _handleFirebaseSignInException(FirebaseAuthException e) {
     switch (e.code) {
       case 'user-not-found':
@@ -108,11 +112,7 @@ class AuthCubit extends Cubit<AuthState> {
         );
         break;
       default:
-        emit(
-          SignInFailureState(
-            'An unexpected error occurred. Please try again later.',
-          ),
-        );
+        emit(SignInFailureState(e.toString()));
     }
   }
 }

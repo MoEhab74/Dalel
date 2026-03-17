@@ -19,9 +19,9 @@ class CustomSignUpForm extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignUpSuccessState) {
-          showFlutterToast('User signed up successfully', Colors.green);
-          // Pushreplacement to home view
-          GoRouter.of(context).pushReplacement(AppRoutes.homeRoute);
+          showFlutterToast('Check your email to verify your account.', Colors.green);
+          // Pushreplacement to home view OR sign in view
+          GoRouter.of(context).pushReplacement(AppRoutes.signInRoute);
         } else if (state is SignUpFailureState) {
           showFlutterToast(state.errorMessage, Colors.red);
         }

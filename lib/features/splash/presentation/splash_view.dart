@@ -2,7 +2,7 @@ import 'package:dalel/core/database/cache/cache_helper.dart';
 import 'package:dalel/core/routes/app_routes.dart';
 import 'package:dalel/core/services/service_locator.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:dalel/features/splash/presentation/functions/check_user_auth_and_email_verfy.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -37,15 +37,13 @@ void navigationDelaye(BuildContext context) {
         getIt<CacheHelper>().getDate(key: 'isOnBoardingVisited') ?? false;
     if (isOnBoardingVisited) {
       // If the user has already completed the onboarding process, navigate to the sign-in screen
-      // Check if the user is authenticated by firebase first
-      if (getIt<FirebaseAuth>().currentUser != null) {
-        GoRouter.of(context).pushReplacement(AppRoutes.homeRoute);
-      } else {
-        GoRouter.of(context).pushReplacement(AppRoutes.signInRoute);
-      }
+      // Check if the user is authenticated by firebase first and also check if the email is verified or not
+      checkUserAuthenticationAndEmailVerification(context);
     } else {
       // If the user has not completed the onboarding process, navigate to the onboarding screen
       GoRouter.of(context).pushReplacement(AppRoutes.onBoardingRoute);
     }
   });
 }
+
+
