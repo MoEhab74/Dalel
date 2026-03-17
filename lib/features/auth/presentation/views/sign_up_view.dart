@@ -1,8 +1,10 @@
+import 'package:dalel/core/routes/app_routes.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/features/auth/presentation/widgets/custom_sign_up_form.dart';
 import 'package:dalel/features/auth/presentation/widgets/have_an_account_widget.dart';
 import 'package:dalel/features/auth/presentation/widgets/welcome_text.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
@@ -27,13 +29,15 @@ class SignUpView extends StatelessWidget {
                 child: HaveAnAccountWidget(
                   text1: AppStrings.alreadyHaveAnAccount,
                   text2: AppStrings.signIn,
+                  onTap: () => GoRouter.of(
+                    context,
+                  ).pushReplacement(AppRoutes.signInRoute),
                 ),
               ),
             ),
           ],
         ),
       ),
-   
     );
   }
 }

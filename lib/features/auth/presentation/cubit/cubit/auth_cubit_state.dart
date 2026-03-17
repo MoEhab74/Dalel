@@ -11,6 +11,15 @@ final class SignUpFailureState extends AuthState {
   SignUpFailureState(this.errorMessage);
 }
 
+final class SignInLoadingState extends AuthState {}
+
+final class SignInSuccessState extends AuthState {}
+
+final class SignInFailureState extends AuthState {
+  final String errorMessage;
+  SignInFailureState(this.errorMessage);
+}
+
 final class TermsAndConditionsCheckBoxState extends AuthState {
   final bool isChecked;
   TermsAndConditionsCheckBoxState(this.isChecked);

@@ -29,7 +29,7 @@ class CustomSignUpForm extends StatelessWidget {
       builder: (context, state) {
         AuthCubit authCubit = BlocProvider.of<AuthCubit>(context);
         return Form(
-          key: authCubit.formKey,
+          key: authCubit.signUpFormKey,
           child: Column(
             children: [
               CustomTextFormField(
@@ -73,7 +73,7 @@ class CustomSignUpForm extends StatelessWidget {
                       text: AppStrings.signUp,
                       onPressed: () {
                         if (authCubit.termsAndConditionsCheckBoxValue == true) {
-                          if (authCubit.formKey.currentState!.validate()) {
+                          if (authCubit.signUpFormKey.currentState!.validate()) {
                             authCubit.signUpWithEmailAndPassword();
                           }
                         }

@@ -9,7 +9,8 @@ class AuthCubit extends Cubit<AuthState> {
   String? lastName;
   String? emailAddress;
   String? password;
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> signInFormKey = GlobalKey<FormState>();
   bool? termsAndConditionsCheckBoxValue = false;
   bool isPasswordVisible = false;
 
@@ -22,11 +23,30 @@ class AuthCubit extends Cubit<AuthState> {
       );
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
-      _handleFirebaseException(e);
+      _handleFirebaseSignUpException(e);
     } catch (e) {
       emit(
         SignUpFailureState(
           'An unexpected error occurred. Please try again later.',
+        ),
+      );
+    }
+  }
+
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      emit(SignInLoadingState());
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailAddress!,
+        password: password!,
+      );
+      emit(SignInSuccessState());
+    } on FirebaseAuthException catch (e) {
+      _handleFirebaseSignInException(e);
+    } catch (e) {
+      emit(
+        SignInFailureState(
+          e.toString(),
         ),
       );
     }
@@ -42,7 +62,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(PasswordVisibilityState(isPasswordVisible));
   }
 
-  void _handleFirebaseException(FirebaseAuthException e) {
+  void _handleFirebaseSignUpException(FirebaseAuthException e) {
     switch (e.code) {
       case 'weak-password':
         emit(SignUpFailureState('The password provided is too weak.'));
@@ -68,5 +88,31 @@ class AuthCubit extends Cubit<AuthState> {
         );
     }
   }
-
+  
+  void _handleFirebaseSignInException(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'user-not-found':
+        emit(SignInFailureState('No user found for that email.'));
+        break;
+      case 'wrong-password':
+        emit(SignInFailureState('Wrong password provided for that user.'));
+        break;
+      case 'invalid-email':
+        emit(SignInFailureState('The email address is not valid.'));
+        break;
+      case 'network-request-failed':
+        emit(
+          SignInFailureState(
+            'A network error has occurred. Please check your internet connection and try again.',
+          ),
+        );
+        break;
+      default:
+        emit(
+          SignInFailureState(
+            'An unexpected error occurred. Please try again later.',
+          ),
+        );
+    }
+  }
 }
