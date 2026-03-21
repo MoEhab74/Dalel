@@ -46,10 +46,10 @@ class CustomForgotPasswordForm extends StatelessWidget {
                     ? CircularProgressIndicator(color: AppColors.primaryColor)
                     : AppButton(
                         text: AppStrings.sendResetPasswordLink,
-                        onPressed: () {
+                        onPressed: () async {
                           if (authCubit.forgotPasswordFormKey.currentState!
                               .validate()) {
-                            authCubit.resetPasswordLink();
+                            await authCubit.resetPasswordLink();
                           }
                         },
                       ),

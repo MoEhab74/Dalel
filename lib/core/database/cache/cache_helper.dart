@@ -1,18 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
-  // static CacheHelper? _instance;
   late SharedPreferences sharedPreferences;
-
-  // CacheHelper._();
-  
-  // Singletone instance is called every time we call the CacheHelper class,
-  // but it will only be created once at the first time
-  // factory CacheHelper() {
-  //   _instance ??= CacheHelper._();
-  //   return _instance!;
-  // }
-
+  // Initialization must be called in main function before runApp
   Future<void> init() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }

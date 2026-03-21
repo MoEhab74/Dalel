@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dalel/features/auth/presentation/cubit/cubit/auth_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,8 @@ class AuthCubit extends Cubit<AuthState> {
         email: emailAddress!,
         password: password!,
       );
-      verifyEmail();
+      await addUserProfileToFirestore();
+      await verifyEmail();
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
       _handleFirebaseSignUpException(e);
@@ -53,11 +55,11 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void verifyEmail() async {
+  Future<void> verifyEmail() async {
     await FirebaseAuth.instance.currentUser!.sendEmailVerification();
   }
 
-  void resetPasswordLink() async {
+  Future<void> resetPasswordLink() async {
     try {
       emit(ResetPasswordLinkLoadingState());
       await FirebaseAuth.instance.sendPasswordResetEmail(email: emailAddress!);
@@ -68,6 +70,22 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       emit(ResetPasswordLinkFailureState(e.toString()));
     }
+  }
+
+  Future<void> addUserProfileToFirestore() async {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    final user = <String, dynamic>{
+      'firstName': firstName,
+      'lastName': lastName,
+      'emailAddress': emailAddress,
+    };
+    await users
+        .doc(emailAddress)
+        .set(user)
+        .then((value) => log('User profile added to Firestore'))
+        .catchError(
+          (error) => log('Failed to add user profile to Firestore: $error'),
+        );
   }
 
   void updateTermsAndConditionsCheckBoxValue({required bool newValue}) {
