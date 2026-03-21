@@ -5,5 +5,6 @@ class AppRoutes {
   static const String signUpRoute = '/signUp';
   static const String homeRoute = '/home';
   static const String detailsRoute = '/details';
+  static const String forgotPasswordRoute = '/forgotPassword';
   
 }

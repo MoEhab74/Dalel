@@ -2,7 +2,7 @@ import 'package:dalel/core/routes/app_routes.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/features/auth/presentation/widgets/custom_sign_up_form.dart';
 import 'package:dalel/features/auth/presentation/widgets/have_an_account_widget.dart';
-import 'package:dalel/features/auth/presentation/widgets/welcome_text.dart';
+import 'package:dalel/core/widgets/page_title_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,7 +18,7 @@ class SignUpView extends StatelessWidget {
           slivers: [
             SliverToBoxAdapter(child: SizedBox(height: 152)),
             SliverToBoxAdapter(
-              child: WelcomeTextWidget(text: AppStrings.welcome),
+              child: PageTitleTextWidget(text: AppStrings.welcome),
             ),
             SliverToBoxAdapter(child: SizedBox(height: 48)),
             SliverToBoxAdapter(child: CustomSignUpForm()),

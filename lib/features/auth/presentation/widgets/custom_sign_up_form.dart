@@ -4,7 +4,7 @@ import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/widgets/app_buttom.dart';
 import 'package:dalel/features/auth/presentation/cubit/cubit/auth_cubit.dart';
-import 'package:dalel/features/auth/presentation/cubit/cubit/auth_cubit_state.dart';
+import 'package:dalel/features/auth/presentation/cubit/cubit/auth_state.dart';
 import 'package:dalel/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:dalel/features/auth/presentation/widgets/terms_and_conditions.dart';
 import 'package:flutter/material.dart';

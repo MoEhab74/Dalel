@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:dalel/features/auth/presentation/cubit/cubit/auth_cubit.dart';
-import 'package:dalel/features/auth/presentation/cubit/cubit/auth_cubit_state.dart';
+import 'package:dalel/features/auth/presentation/cubit/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

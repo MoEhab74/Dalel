@@ -1,17 +1,14 @@
 import 'package:dalel/core/functions/custom_toast.dart';
-import 'package:dalel/core/routes/app_routes.dart';
-import 'package:dalel/core/services/service_locator.dart';
 import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/core/widgets/app_buttom.dart';
 import 'package:dalel/features/auth/presentation/cubit/cubit/auth_cubit.dart';
-import 'package:dalel/features/auth/presentation/cubit/cubit/auth_cubit_state.dart';
+import 'package:dalel/features/auth/presentation/cubit/cubit/auth_state.dart';
+import 'package:dalel/features/auth/presentation/functions/check_email_verfication_and_navigate.dart';
 import 'package:dalel/features/auth/presentation/widgets/custom_text_form_field.dart';
 import 'package:dalel/features/auth/presentation/widgets/forget_password_text_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class CustomSignInForm extends StatelessWidget {
   const CustomSignInForm({super.key});
@@ -25,12 +22,7 @@ class CustomSignInForm extends StatelessWidget {
         } else if (state is SignInSuccessState) {
           // showFlutterToast('Welcome back!', Colors.green);
           // Pushreplacement to home view
-          getIt<FirebaseAuth>().currentUser!.emailVerified
-              ? GoRouter.of(context).pushReplacement(AppRoutes.homeRoute)
-              : showFlutterToast(
-                  'Please verify your email first!',
-                  AppColors.primaryColor,
-                );
+          checkEmailVerificationAndNavigate(context);
         }
       },
       builder: (context, state) {

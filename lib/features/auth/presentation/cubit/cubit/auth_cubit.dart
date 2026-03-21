@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:dalel/features/auth/presentation/cubit/cubit/auth_cubit_state.dart';
+import 'package:dalel/features/auth/presentation/cubit/cubit/auth_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,6 +52,10 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  void verifyEmail() async {
+    await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+  }
+
   void updateTermsAndConditionsCheckBoxValue({required bool newValue}) {
     termsAndConditionsCheckBoxValue = newValue;
     emit(TermsAndConditionsCheckBoxState(termsAndConditionsCheckBoxValue!));
@@ -60,10 +64,6 @@ class AuthCubit extends Cubit<AuthState> {
   void togglePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
     emit(PasswordVisibilityState(isPasswordVisible));
-  }
-
-  void verifyEmail() async {
-    await FirebaseAuth.instance.currentUser!.sendEmailVerification();
   }
 
   void _handleFirebaseSignUpException(FirebaseAuthException e) {

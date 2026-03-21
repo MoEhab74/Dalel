@@ -3,7 +3,7 @@ import 'package:dalel/core/utils/app_strings.dart';
 import 'package:dalel/features/auth/presentation/widgets/custom_sign_in_form.dart';
 import 'package:dalel/features/auth/presentation/widgets/have_an_account_widget.dart';
 import 'package:dalel/features/auth/presentation/widgets/login_banner_widget.dart';
-import 'package:dalel/features/auth/presentation/widgets/welcome_text.dart';
+import 'package:dalel/core/widgets/page_title_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,7 +18,7 @@ class SignInView extends StatelessWidget {
           SliverToBoxAdapter(child: LoginBannerWidget()),
           SliverToBoxAdapter(child: SizedBox(height: 32)),
           SliverToBoxAdapter(
-            child: WelcomeTextWidget(text: AppStrings.welcomeBack),
+            child: PageTitleTextWidget(text: AppStrings.welcomeBack),
           ),
           SliverToBoxAdapter(child: SizedBox(height: 56)),
           SliverToBoxAdapter(child: CustomSignInForm()),
