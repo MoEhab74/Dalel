@@ -13,6 +13,7 @@ class AuthCubit extends Cubit<AuthState> {
   String? password;
   GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> signInFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> forgotPasswordFormKey = GlobalKey<FormState>();
   bool? termsAndConditionsCheckBoxValue = false;
   bool isPasswordVisible = false;
 
@@ -54,6 +55,19 @@ class AuthCubit extends Cubit<AuthState> {
 
   void verifyEmail() async {
     await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+  }
+
+  void resetPasswordLink() async {
+    try {
+      emit(ResetPasswordLinkLoadingState());
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: emailAddress!);
+      emit(ResetPasswordLinkSuccessState());
+    } on FirebaseAuthException catch (e) {
+      _handleFirebaseResetPasswordLinkException(e);
+      log(e.toString());
+    } catch (e) {
+      emit(ResetPasswordLinkFailureState(e.toString()));
+    }
   }
 
   void updateTermsAndConditionsCheckBoxValue({required bool newValue}) {
@@ -113,6 +127,19 @@ class AuthCubit extends Cubit<AuthState> {
         break;
       default:
         emit(SignInFailureState(e.toString()));
+    }
+  }
+
+  void _handleFirebaseResetPasswordLinkException(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'auth/invalid-email':
+        emit(ResetPasswordLinkFailureState('The email address is not valid.'));
+        break;
+      case 'auth/user-not-found':
+        emit(ResetPasswordLinkFailureState('No user found for that email.'));
+        break;
+      default:
+        emit(ResetPasswordLinkFailureState(e.toString()));
     }
   }
 }

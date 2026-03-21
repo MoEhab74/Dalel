@@ -20,6 +20,15 @@ final class SignInFailureState extends AuthState {
   SignInFailureState(this.errorMessage);
 }
 
+final class ResetPasswordLinkLoadingState extends AuthState {}
+
+final class ResetPasswordLinkSuccessState extends AuthState {}
+
+final class ResetPasswordLinkFailureState extends AuthState {
+  final String errorMessage;
+  ResetPasswordLinkFailureState(this.errorMessage);
+}
+
 final class TermsAndConditionsCheckBoxState extends AuthState {
   final bool isChecked;
   TermsAndConditionsCheckBoxState(this.isChecked);
