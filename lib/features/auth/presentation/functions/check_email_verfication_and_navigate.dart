@@ -8,7 +8,7 @@ import 'package:go_router/go_router.dart';
 
 void checkEmailVerificationAndNavigate(BuildContext context) {
     getIt<FirebaseAuth>().currentUser!.emailVerified
-        ? GoRouter.of(context).pushReplacement(AppRoutes.homeRoute)
+        ? GoRouter.of(context).pushReplacement(AppRoutes.bottomNavigationBarRoute)
         : showFlutterToast(
             'Please verify your email first!',
             AppColors.primaryColor,

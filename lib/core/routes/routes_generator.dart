@@ -3,7 +3,7 @@ import 'package:dalel/features/auth/presentation/cubit/cubit/auth_cubit.dart';
 import 'package:dalel/features/auth/presentation/views/forgot_password_view.dart';
 import 'package:dalel/features/auth/presentation/views/sign_in_view.dart';
 import 'package:dalel/features/auth/presentation/views/sign_up_view.dart';
-import 'package:dalel/features/home/presentation/views/home_view.dart';
+import 'package:dalel/features/home/presentation/widgets/bottom_navigation_bar_widget.dart';
 import 'package:dalel/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:dalel/features/splash/presentation/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,10 +17,6 @@ class RoutesGenerator {
       GoRoute(
         path: AppRoutes.splashRoute,
         builder: (context, state) => const SplashView(),
-      ),
-      GoRoute(
-        path: AppRoutes.homeRoute,
-        builder: (context, state) => const HomeView(),
       ),
       GoRoute(
         path: AppRoutes.onBoardingRoute,
@@ -47,6 +43,10 @@ class RoutesGenerator {
           create: (context) => AuthCubit(),
           child: const ForgotPasswordView(),
         ),
+      ),
+      GoRoute(
+        path: AppRoutes.bottomNavigationBarRoute,
+        builder: (context, state) => const BottomNavigationBarWidget(),
       ),
     ],
   );

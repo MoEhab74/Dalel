@@ -7,4 +7,5 @@ abstract class AppColors {
   static Color onBackgroundBlack = const Color(0xFF000000);
   static Color onBackgroundGray = const Color(0xFF6F6460);
   static Color gray = const Color(0xFFB4B4B4);
+  static Color inactiveIconColor = const Color(0xFF9B6C59);
 }
