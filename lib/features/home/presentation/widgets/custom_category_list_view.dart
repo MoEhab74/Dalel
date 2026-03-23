@@ -1,8 +1,8 @@
-import 'package:dalel/features/home/presentation/widgets/custom_historical_character.dart';
+import 'package:dalel/features/home/presentation/widgets/custom_category_widget.dart';
 import 'package:flutter/material.dart';
 
-class HistoricalCharactersListView extends StatelessWidget {
-  const HistoricalCharactersListView({super.key});
+class CustomCategoryListView extends StatelessWidget {
+  const CustomCategoryListView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,10 +10,11 @@ class HistoricalCharactersListView extends StatelessWidget {
       height: 172,
       width: double.infinity,
       child: ListView.builder(
+        clipBehavior: Clip.none,
         scrollDirection: Axis.horizontal,
         itemCount: 5,
         itemBuilder: (context, index) {
-          return const CustomHistoricalCharacter(characterName: "Saladin");
+          return const CustomCategoryWidget(characterName: 'Saladin');
         },
       ),
     );

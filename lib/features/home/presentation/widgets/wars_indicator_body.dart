@@ -49,7 +49,7 @@ class WarsIndicatorBody extends StatelessWidget {
             child: Align(
               alignment: Alignment.center,
               child: SmoothPageIndicator(
-                controller: controller, // PageController
+                controller: controller, 
                 count: wars.length,
                 effect: SlideEffect(
                   activeDotColor: AppColors.backgroundColor,
@@ -57,8 +57,14 @@ class WarsIndicatorBody extends StatelessWidget {
                   dotWidth: 10,
                   dotHeight: 10,
                   radius: 5,
-                ), // your preferred effect
-                onDotClicked: (index) {},
+                ),
+                onDotClicked: (index) {
+                  controller.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeInOut,
+                  );
+                },
               ),
             ),
           ),

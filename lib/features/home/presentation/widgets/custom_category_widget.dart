@@ -3,14 +3,14 @@ import 'package:dalel/core/utils/app_colors.dart';
 import 'package:dalel/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
-class CustomHistoricalCharacter extends StatelessWidget {
-  const CustomHistoricalCharacter({super.key, required this.characterName});
+class CustomCategoryWidget extends StatelessWidget {
+  const CustomCategoryWidget({super.key, required this.characterName});
   final String characterName;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right: 16.0),
       child: Container(
         width: 96,
         height: 164,
@@ -40,7 +40,7 @@ class CustomHistoricalCharacter extends StatelessWidget {
                 ).copyWith(bottomLeft: Radius.zero, bottomRight: Radius.zero),
                 image: DecorationImage(
                   image: AssetImage(Assets.imagesSalahalDin),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
