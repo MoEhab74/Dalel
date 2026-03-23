@@ -2,6 +2,18 @@
 class Assets {
   Assets._();
   
+  /// Assets for imagesDalel
+  /// assets/images/Dalel.png
+  static const String imagesDalel = "assets/images/Dalel.png";
+
+  /// Assets for imagesDrawer
+  /// assets/images/drawer.svg
+  static const String imagesDrawer = "assets/images/drawer.svg";
+
+  /// Assets for imagesEgypt
+  /// assets/images/egypt.png
+  static const String imagesEgypt = "assets/images/egypt.png";
+
   /// Assets for imagesMosque
   /// assets/images/mosque.svg
   static const String imagesMosque = "assets/images/mosque.svg";
@@ -26,8 +38,24 @@ class Assets {
   /// assets/images/pyramids.svg
   static const String imagesPyramids = "assets/images/pyramids.svg";
 
+  /// Assets for imagesSalahalDin
+  /// assets/images/SalahalDin.png
+  static const String imagesSalahalDin = "assets/images/SalahalDin.png";
+
   /// Assets for imagesSucccesOrderIcon
   /// assets/images/succces_order_icon.png
   static const String imagesSucccesOrderIcon = "assets/images/succces_order_icon.png";
+
+  /// Assets for imagesWar
+  /// assets/images/war.jpg
+  static const String imagesWar = "assets/images/war.jpg";
+
+  /// Assets for imagesWar2
+  /// assets/images/war2.jpg
+  static const String imagesWar2 = "assets/images/war2.jpg";
+
+  /// Assets for imagesWar3
+  /// assets/images/war3.jpg
+  static const String imagesWar3 = "assets/images/war3.jpg";
 }
 

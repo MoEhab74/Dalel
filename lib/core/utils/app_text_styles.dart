@@ -44,4 +44,10 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w400,
     color: Color(0xFF6F6460),
   );
+  static TextStyle poppins400Style20 = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+    color: AppColors.secondaryColor,
+  );
 }
